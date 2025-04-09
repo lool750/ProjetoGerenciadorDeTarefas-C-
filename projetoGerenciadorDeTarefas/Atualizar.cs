@@ -44,7 +44,7 @@ namespace projetoGerenciadorDeTarefas
                 textBox3.Text = "Informe o código";
                 textBox4.Text = "Informe o código";
                 comboBox1.Text = "Informe o código";
-                dateTimePicker1.Text = "Informe o código";
+                //dateTimePicker1.Text = "Informe o código";
                 comboBox2.Text = "Informe o código";
             }
             else
@@ -62,39 +62,68 @@ namespace projetoGerenciadorDeTarefas
                 textBox2.ReadOnly = false;
                 textBox3.ReadOnly = false;
                 textBox4.ReadOnly = false;
-               /*omboBox1.ReadOnly = false;
-                dateTimePicker1.ReadOnly = false;
-                comboBox2.ReadOnly = false;*/
+                comboBox1.Enabled = true;
+                //dateTimePicker1.ReadOnly = false;
+                comboBox2.Enabled = true;
             }
         }//fim do botão buscar
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Verifica se algum campo está vazio
+            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
+                string.IsNullOrWhiteSpace(textBox2.Text) ||
+                string.IsNullOrWhiteSpace(textBox3.Text) ||
+                string.IsNullOrWhiteSpace(textBox4.Text) ||
+                string.IsNullOrWhiteSpace(comboBox1.Text) ||
+                string.IsNullOrWhiteSpace(dateTimePicker1.Text) ||
+                string.IsNullOrWhiteSpace(comboBox2.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos antes de atualizar.",
+                                "Campos obrigatórios",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return; // Sai do método sem atualizar
+            }
+
+            // Se todos os campos estiverem preenchidos, segue com a atualização
             int codigo = Convert.ToInt32(maskedTextBox1.Text);
             string nome = textBox2.Text;
-            string telefone = textBox3.Text;
-            string endereco = textBox4.Text;
+            string tituloTarefa = textBox3.Text;
+            string descTarefa = textBox4.Text;
+            string prioridade = comboBox1.Text;
+            string vencimento = dateTimePicker1.Text;
+            string andamentoTarefa = comboBox2.Text;
 
             atu.Atualizar(codigo, "nome", nome);
-            atu.Atualizar(codigo, "tituloTarefa", telefone);
-            atu.Atualizar(codigo, "descTarefa", endereco);
-            MessageBox.Show("Dados Atualizados com Sucesso");
+            atu.Atualizar(codigo, "tituloTarefa", tituloTarefa);
+            atu.Atualizar(codigo, "descTarefa", descTarefa);
+            atu.Atualizar(codigo, "prioridade", prioridade);
+            atu.Atualizar(codigo, "vencimento", vencimento);
+            atu.Atualizar(codigo, "andamentoTarefa", andamentoTarefa);
+
+            // Modal de sucesso mais bonito
+            MessageBox.Show(" Os dados foram atualizados com sucesso!",
+                            "Atualização Concluída",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
             this.Close();
         }//fim do botão Atualizar
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
+        }//caixa prioridade
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
+        }//caixa status da tarefa
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
-        }
+        }//caixa vencimento
     }
 }

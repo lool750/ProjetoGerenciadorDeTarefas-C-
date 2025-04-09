@@ -22,9 +22,18 @@ namespace projetoGerenciadorDeTarefas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int codigo = Convert.ToInt32(maskedTextBox1.Text);
-            MessageBox.Show(exc.Excluir(codigo));
-            this.Close();
+            DialogResult resultado = MessageBox.Show("Tem certeza que deseja excluir?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                int codigo = Convert.ToInt32(maskedTextBox1.Text);
+                MessageBox.Show(exc.Excluir(codigo));
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Exclusão cancelada.");
+            }
         }//fim do botão excluir
 
         private void button1_Click(object sender, EventArgs e)

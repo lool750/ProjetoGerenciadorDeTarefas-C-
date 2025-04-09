@@ -29,7 +29,7 @@ namespace projetoGerenciadorDeTarefas
             try
             {
                 conexao.Open();//tentando conectar com o banco
-                MessageBox.Show("Conectado!!!"); //serve para teste
+                //MessageBox.Show("Conectado!!!"); //serve para teste
             }
             catch (Exception erro)
             {

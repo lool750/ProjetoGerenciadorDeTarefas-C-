@@ -55,9 +55,23 @@ namespace projetoGerenciadorDeTarefas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //instanciando classe
+            // Verificando se algum campo está em branco
+            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
+                string.IsNullOrWhiteSpace(textBox2.Text) ||
+                string.IsNullOrWhiteSpace(textBox3.Text) ||
+                string.IsNullOrWhiteSpace(textBox4.Text) ||
+                string.IsNullOrWhiteSpace(comboBox1.Text) ||
+                string.IsNullOrWhiteSpace(dateTimePicker1.Text) ||
+                string.IsNullOrWhiteSpace(comboBox2.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos antes de cadastrar.", "Campos obrigatórios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Impede o cadastro
+            }
+
+            // Instanciando a classe
             DAO inserir = new DAO();
-            //coletando os dados dos campos
+
+            // Coletando os dados dos campos
             int codigo = Convert.ToInt32(maskedTextBox1.Text);
             string nome = textBox2.Text;
             string tituloTarefa = textBox3.Text;
@@ -65,9 +79,10 @@ namespace projetoGerenciadorDeTarefas
             string prioridade = comboBox1.Text;
             string vencimento = dateTimePicker1.Text;
             string andamentoTarefa = comboBox2.Text;
-            //chamando o método inserir
+
+            // Chamando o método inserir
             MessageBox.Show(inserir.Inserir(codigo, nome, tituloTarefa, descTarefa, prioridade, vencimento, andamentoTarefa));
-            this.Close();//fechar janela cadastrar
+            this.Close(); // Fechar janela cadastrar
         }//Fim botão cadastrar
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
