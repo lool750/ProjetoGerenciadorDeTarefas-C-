@@ -39,11 +39,38 @@ namespace projetoGerenciadorDeTarefas
 
         public string Inserir(int codigo, string nome, string tituloTarefa, string descTarefa, string prioridade, string vencimento, string andamentoTarefa)
         {
-            string inserir = $"Insert into cadastro(codigo, nome, tituloTarefa, descTarefa, prioridade, vencimento, andamentoTarefa) values('{codigo}','{nome}','{tituloTarefa}','{descTarefa}','{prioridade}','{vencimento}','{andamentoTarefa}')";
-            MySqlCommand sql = new MySqlCommand(inserir, conexao);
-            string resultado = sql.ExecuteNonQuery() + " Executado";
-            return resultado;
-        }// fim do método inserir
+            try
+            {
+                // Verifica se o código já está cadastrado
+                if (CodigoExiste(codigo))
+                {
+                    return "Código já existente";
+                }
+
+                // Caso não exista, faz o insert
+                string inserir = $"INSERT INTO cadastro(codigo, nome, tituloTarefa, descTarefa, prioridade, vencimento, andamentoTarefa) " +
+                                 $"VALUES('{codigo}', '{nome}', '{tituloTarefa}', '{descTarefa}', '{prioridade}', '{vencimento}', '{andamentoTarefa}')";
+
+                MySqlCommand sql = new MySqlCommand(inserir, conexao);
+                string resultado = sql.ExecuteNonQuery() + " Executado";
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                return "Erro: " + ex.Message;
+            }
+        }//fim do método inserir
+
+        private bool CodigoExiste(int codigo)
+        {
+            string consulta = $"SELECT COUNT(*) FROM cadastro WHERE codigo = '{codigo}'";
+            MySqlCommand cmd = new MySqlCommand(consulta, conexao);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+            return count > 0;
+        }//fim do método código existe
+
+
 
         public string Atualizar(int codigo, string campo, string dado)
         {

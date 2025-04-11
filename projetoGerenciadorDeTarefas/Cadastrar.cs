@@ -13,6 +13,7 @@ namespace projetoGerenciadorDeTarefas
 {
     public partial class Cadastrar : Form
     {
+        Form1 form = new Form1();
         public Cadastrar()
         {
             InitializeComponent();
@@ -50,11 +51,17 @@ namespace projetoGerenciadorDeTarefas
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Form1 formulario = new Form1();
             this.Close();
+            
+            formulario.ShowDialog();
+            
         }//Fim botão voltar
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Form1 form = new Form1();
+            form.ShowDialog();
             // Verificando se algum campo está em branco
             if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
                 string.IsNullOrWhiteSpace(textBox2.Text) ||
@@ -65,7 +72,7 @@ namespace projetoGerenciadorDeTarefas
                 string.IsNullOrWhiteSpace(comboBox2.Text))
             {
                 MessageBox.Show("Por favor, preencha todos os campos antes de cadastrar.", "Campos obrigatórios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Impede o cadastro
+                return;
             }
 
             // Instanciando a classe
@@ -80,10 +87,19 @@ namespace projetoGerenciadorDeTarefas
             string vencimento = dateTimePicker1.Text;
             string andamentoTarefa = comboBox2.Text;
 
-            // Chamando o método inserir
-            MessageBox.Show(inserir.Inserir(codigo, nome, tituloTarefa, descTarefa, prioridade, vencimento, andamentoTarefa));
-            this.Close(); // Fechar janela cadastrar
-        }//Fim botão cadastrar
+            // Chamando o método inserir e verificando o retorno
+            string resultado = inserir.Inserir(codigo, nome, tituloTarefa, descTarefa, prioridade, vencimento, andamentoTarefa);
+
+            if (resultado.StartsWith("1")) // Sucesso
+            {
+                MessageBox.Show("Cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close(); // Fecha a janela de cadastro
+            }
+            else // Falha
+            {
+                MessageBox.Show("Erro ao cadastrar. Detalhes: " + resultado, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }//fim do botão cadastrar
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {

@@ -21,13 +21,18 @@ namespace projetoGerenciadorDeTarefas
         private void button1_Click(object sender, EventArgs e)
         {
             Cadastrar cad = new Cadastrar();
+            this.Visible = false;
             cad.ShowDialog();
+            
         }//fim do botão cadastrar tarefas
+
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
             Consultar con = new Consultar();
-            con.ShowDialog();
+            con.Show();
+
         }//fim do botão consultar tarefas
 
         private void label1_Click(object sender, EventArgs e)
@@ -48,6 +53,16 @@ namespace projetoGerenciadorDeTarefas
         }//Fim botão excluir tarefas
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
 
         }

@@ -22,19 +22,43 @@ namespace projetoGerenciadorDeTarefas
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Verifica se o campo está vazio ou só tem espaços
+            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text))
+            {
+                MessageBox.Show("Por favor, informe um código para exclusão.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Tenta converter para int com segurança
+            if (!int.TryParse(maskedTextBox1.Text, out int codigo))
+            {
+                MessageBox.Show("Código inválido. Digite apenas números.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Confirmação da exclusão
             DialogResult resultado = MessageBox.Show("Tem certeza que deseja excluir?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (resultado == DialogResult.Yes)
             {
-                int codigo = Convert.ToInt32(maskedTextBox1.Text);
-                MessageBox.Show(exc.Excluir(codigo));
-                this.Close();
+                string retorno = exc.Excluir(codigo);
+
+                if (retorno.StartsWith("1")) // Se uma linha foi afetada
+                {
+                    MessageBox.Show("Excluído com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Não foi possível excluir. Verifique o código.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Exclusão cancelada.");
+                MessageBox.Show("Exclusão cancelada.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }//fim do botão excluir
+
 
         private void button1_Click(object sender, EventArgs e)
         {

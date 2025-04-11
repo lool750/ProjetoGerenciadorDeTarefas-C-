@@ -27,6 +27,7 @@ namespace projetoGerenciadorDeTarefas
 
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -35,8 +36,13 @@ namespace projetoGerenciadorDeTarefas
         private void button2_Click(object sender, EventArgs e)
         {
             Atualizar atu = new Atualizar();
-            atu.ShowDialog();
-        }//Fim botão editar tarefa
+            atu.Show();
+            atu.BringToFront();
+            atu.Focus();
+            atu.Activate(); // Isso garante que ela venha pra frente
+
+            this.Close();
+        }//fim do botão editar
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
