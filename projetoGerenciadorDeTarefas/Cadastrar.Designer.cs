@@ -83,9 +83,9 @@
             this.label3.Font = new System.Drawing.Font("Roboto Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(454, 218);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(161, 23);
+            this.label3.Size = new System.Drawing.Size(146, 23);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Nome Professor :";
+            this.label3.Text = "Nome Docente :";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4

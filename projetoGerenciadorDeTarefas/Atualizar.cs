@@ -55,7 +55,7 @@ namespace projetoGerenciadorDeTarefas
                 textBox3.Text = atu.RetornarTituloTarefa(codigo);//Preenchendo o campo telefone
                 textBox4.Text = atu.RetornarDescTarefa(codigo);//Preenchendo o campo endereço
                 comboBox1.Text = atu.RetornarPrioridadeTarefa(codigo);//preenchendo o campo de prioridade                                              //
-                dateTimePicker1.Text = atu.RetornarDataVencimento(codigo);//preenchendo o campo de vencimento 
+                //dateTimePicker1.Text = atu.RetornarDataVencimento(codigo);//preenchendo o campo de vencimento 
                 comboBox2.Text = atu.RetornarAndamentoTarefa(codigo);//preenchendo o campo de vencimento
 
                 maskedTextBox1.ReadOnly = true;

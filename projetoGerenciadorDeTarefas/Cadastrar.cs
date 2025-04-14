@@ -51,17 +51,11 @@ namespace projetoGerenciadorDeTarefas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 formulario = new Form1();
             this.Close();
-            
-            formulario.ShowDialog();
-            
         }//Fim botão voltar
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1 form = new Form1();
-            form.ShowDialog();
             // Verificando se algum campo está em branco
             if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
                 string.IsNullOrWhiteSpace(textBox2.Text) ||

@@ -20,18 +20,21 @@ namespace projetoGerenciadorDeTarefas
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide(); // Esconde a tela atual
             Cadastrar cad = new Cadastrar();
-            this.Visible = false;
-            cad.ShowDialog();
-            
+            cad.ShowDialog(); // Espera até a tela de cadastro ser fechada
+            this.Show(); // Volta a mostrar a tela anterior (Menu)
+
         }//fim do botão cadastrar tarefas
 
         
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide(); // Esconde a tela atual
             Consultar con = new Consultar();
-            con.Show();
+            con.ShowDialog(); // Espera até a tela de cadastro ser fechada
+            this.Show(); // Volta a mostrar a tela anterior (Menu)
 
         }//fim do botão consultar tarefas
 
@@ -42,14 +45,18 @@ namespace projetoGerenciadorDeTarefas
 
         private void button3_Click(object sender, EventArgs e)
         {
+            this.Hide(); // Esconde a tela atual
             Atualizar atu = new Atualizar();
-            atu.ShowDialog();
+            atu.ShowDialog(); // Espera até a tela de cadastro ser fechada
+            this.Show(); // Volta a mostrar a tela anterior (Menu)
         }//fim botão Atualizar tarefas
 
         private void button4_Click(object sender, EventArgs e)
         {
+            this.Hide(); // Esconde a tela atual
             Excluir exc = new Excluir();
-            exc.ShowDialog();
+            exc.ShowDialog(); // Espera até a tela de cadastro ser fechada
+            this.Show(); // Volta a mostrar a tela anterior (Menu)
         }//Fim botão excluir tarefas
 
         private void Form1_Load(object sender, EventArgs e)
@@ -65,6 +72,11 @@ namespace projetoGerenciadorDeTarefas
         private void pictureBox3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

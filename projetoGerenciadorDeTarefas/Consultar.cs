@@ -35,13 +35,11 @@ namespace projetoGerenciadorDeTarefas
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide(); // Esconde a janela atual ao invés de fechar
             Atualizar atu = new Atualizar();
-            atu.Show();
-            atu.BringToFront();
-            atu.Focus();
-            atu.Activate(); // Isso garante que ela venha pra frente
+            atu.ShowDialog(); // Modal, permanece no topo até fechar
 
-            this.Close();
+            this.Close(); // Fecha a janela depois que a nova for encerrada
         }//fim do botão editar
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
